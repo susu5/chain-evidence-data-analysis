@@ -1,9 +1,9 @@
 ---
-name: chain-evidence-data-analysis
-description: Universal data and file analysis workflow for business decision-making. Use when the user asks to analyze, summarize, diagnose, compare, validate, report on, or produce recommendations from any data, file, spreadsheet, Excel, CSV, JSON, PDF, HTML report, chat log, system export, learner report, sales record, course record, order file, metric table, or mixed source material. Trigger whenever the request combines data/files/source material with analysis, insights, reporting, diagnosis, statistical comparison, segmentation, SOP, recommendations, or decision support.
+name: SUSU5-chain-evidence-data-analysis
+description: Universal data/file analysis method with a mandatory plan-first workflow. Use whenever the user asks to analyze, summarize, diagnose, compare, validate, interpret, report on, or produce recommendations from data, files, spreadsheets, Excel, CSV, JSON, PDF, HTML reports, chat logs, system exports, learner reports, sales records, course records, order files, metric tables, or mixed source material. Also use for Chinese requests such as 数据分析, 分析文件, 分析表格, 分析报告, 看这个数据, 诊断数据, 输出分析方案, 生成分析报告, 总结文件, 业务分析, 统计分析, 转化分析, SOP分析, 归因分析, or 涉及数据/文件并需要分析. For medium or larger work, first output an analysis plan/分析方案 and wait for user confirmation before executing the analysis.
 ---
 
-# Chain Evidence Data Analysis
+# SUSU5 Chain Evidence Data Analysis
 
 Use this skill to turn any file or data source into a decision-ready analysis. The method is:
 
@@ -37,19 +37,28 @@ Always treat a file as evidence from one part of a larger business chain, not as
 
 ## Staged Interaction Rule
 
-Analysis is often too large for one response. For any medium, standard, deep, multi-file, or decision-impacting task, do not jump directly to the final report.
+Analysis is often too large for one response. For any medium, standard, deep, multi-file, or decision-impacting task, do not jump directly to data execution or the final report.
 
-Use this staged flow:
+Use this mandatory staged flow:
 
 ```text
 Stage 1: understand the task and inspect available files
 Stage 2: produce an analysis plan
-Stage 3: execute the analysis after the plan is accepted or the user asks to continue
-Stage 4: produce the final report or handoff
-Stage 5: list unresolved gaps and next-round data needs
+Stage 3: stop and ask the user to confirm or revise the plan
+Stage 4: execute the analysis only after the plan is confirmed
+Stage 5: produce the final report or handoff
+Stage 6: list unresolved gaps and next-round data needs
 ```
 
-The first substantive response should usually be an analysis plan, not final conclusions. If the user explicitly asks for a quick answer or the file is very simple, use quick mode and still include a short plan before conclusions.
+The first substantive response must be an analysis plan, not final conclusions, unless the user explicitly asks for a very quick answer or says to skip confirmation and execute directly. If the file is simple, use quick mode and still include a short plan before conclusions.
+
+After producing the plan, stop and ask for confirmation using direct language such as:
+
+```text
+请确认这个分析计划是否可以执行；如果可以，我会按这个方案继续分析。
+```
+
+Do not continue into data analysis in the same response after the plan unless the user explicitly said in the current request that no confirmation is needed.
 
 The analysis plan must include:
 
@@ -65,6 +74,7 @@ Logic and attribution plan:
 Expected outputs:
 Risks and data gaps:
 Execution order:
+Confirmation question:
 ```
 
 For formal plan output, use `references/analysis-plan-template.md`.
@@ -78,7 +88,7 @@ For formal plan output, use `references/analysis-plan-template.md`.
 2. **Produce the analysis plan**
    - Summarize the intended analysis route before performing the full analysis.
    - State the questions, data checks, segmentation logic, methods, output format, risks, and execution order.
-   - Ask for confirmation only when the plan requires a business choice, missing source, or risky assumption. Otherwise continue if the user has clearly asked to proceed.
+   - End with a clear confirmation question and wait. Continue only after the user confirms, revises the plan, or explicitly asks to execute without confirmation.
 
 3. **Run a data quality check**
    - Check row count, unique entity count, missing values, duplicates, time coverage, outliers, inconsistent codes, and join keys.
@@ -148,6 +158,7 @@ Validation needed:
 
 - Do not skip the data quality check.
 - Do not skip the analysis plan for medium, standard, deep, multi-file, or decision-impacting work.
+- Do not execute analysis in the same response as the plan unless the user explicitly waives confirmation.
 - Do not merge sources with different authority without explaining the source roles.
 - Do not state causality from correlation alone.
 - Do not rely only on averages; segment and inspect outliers.

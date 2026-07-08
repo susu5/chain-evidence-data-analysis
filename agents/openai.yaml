@@ -1,4 +1,4 @@
-interface:
-  display_name: "链路证据数据分析法"
-  short_description: "拿到任何数据或文件后，进行数据体检、链路证据分析和报告产出。"
-  default_prompt: "请使用链路证据数据分析法分析我提供的数据或文件，并输出结论、证据、风险和可执行建议。"
+锘縤nterface:
+  display_name: "SUSU5-chain-evidence-data-analysis"
+  short_description: "Plan-first data and file analysis skill created by SUSU5."
+  default_prompt: "Use SUSU5-chain-evidence-data-analysis to analyze my data or file. First produce an analysis plan, wait for my confirmation, then execute the analysis and provide findings, evidence, risks, and actions."

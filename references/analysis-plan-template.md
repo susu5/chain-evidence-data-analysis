@@ -1,6 +1,6 @@
 # Analysis Plan Template
 
-Use this template before deep analysis. This is the first formal output for medium, standard, deep, multi-file, or decision-impacting tasks.
+Use this template before deep analysis. This is the first formal output for medium, standard, deep, multi-file, or decision-impacting tasks. After this plan, stop and wait for user confirmation before executing analysis.
 
 ## When to Use
 
@@ -30,6 +30,7 @@ Expected outputs:
 Risks and data gaps:
 Execution order:
 Confirmation needed:
+Confirmation question:
 ```
 
 ## Section Guidance
@@ -141,9 +142,19 @@ List the steps in the order they will be done.
 Use one of:
 
 ```text
-No confirmation needed: proceed unless the user changes direction.
-Confirmation needed: choose analysis goal / source priority / output format.
+Waiting for confirmation: the plan is ready and analysis should not start until the user approves.
+Revision needed: the user must choose analysis goal / source priority / output format.
 Blocked: missing required data.
+```
+
+For medium or larger tasks, do not use "No confirmation needed" unless the user explicitly says to skip confirmation or directly asks to execute without waiting.
+
+### Confirmation question
+
+End the plan with a direct confirmation question:
+
+```text
+请确认这个分析计划是否可以执行；如果可以，我会按这个方案继续分析。也可以告诉我需要调整的目标、维度或输出形式。
 ```
 
 ## Short Plan Format
@@ -153,3 +164,5 @@ For quick tasks:
 ```text
 I will first check data quality, then identify field meaning and source authority, then segment and compare the key outcome, and finally output findings with evidence grades and next actions.
 ```
+
+If the task is not obviously quick, use the full plan and wait for confirmation.

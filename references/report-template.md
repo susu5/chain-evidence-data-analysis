@@ -2,12 +2,12 @@
 
 Use this template for formal reports, analysis documents, memos, or reusable handoffs. Keep the report conclusion-first and evidence-backed.
 
-Before producing the final report, produce an analysis plan unless the user explicitly requests only a quick answer. The plan is the alignment document; the report is the final evidence-backed handoff.
+Before producing the final report, produce an analysis plan unless the user explicitly requests only a quick answer. The plan is the alignment document; the report is the final evidence-backed handoff. For medium or larger tasks, wait for user confirmation after the plan before executing analysis.
 
 Recommended sequence:
 
 ```text
-analysis plan -> data inspection -> analysis execution -> final report -> next-round data plan
+analysis plan -> user confirmation -> data inspection -> analysis execution -> final report -> next-round data plan
 ```
 
 ## Report Structure
